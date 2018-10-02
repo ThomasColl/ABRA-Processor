@@ -23,10 +23,15 @@ directory = os.fsencode('BrokenUpData')
 for file in os.listdir(directory):
     filename = os.fsdecode(file)
     if filename.endswith(".csv"): 
-        #dataset = pandas.read_csv(filename, names=names)
+        dataset = pandas.read_csv("BrokenUpData/" + filename, names=names)
         print(filename)
+        scatter_matrix(dataset)
+        plt.show()
+        p=input("want to end?")
+        if(p == "y"):
+            break;
+        #print(dataset.groupby('item').size())
         #print(dataset.describe())
-        input("is this right?")
     else:
         print("WHy is this here?")
 
