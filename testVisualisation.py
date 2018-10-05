@@ -2,6 +2,7 @@
 import pandas
 import os
 from pandas.plotting import scatter_matrix
+import pandas.plotting
 import matplotlib.pyplot as plt
 from sklearn import model_selection
 from sklearn.metrics import classification_report
@@ -26,13 +27,17 @@ for file in os.listdir(directory):
     if filename.endswith(".csv"): 
         dataset = pandas.read_csv(folderName+ "/" + filename, names=names)
         print(filename)
-        scatter_matrix(dataset)
+        #dataset.plot(kind='scatter', x='timestamp', y='rating')
+        dataset.plot(kind='Histogram', x='timestamp', y='rating')
+        #scatter_matrix(dataset)
+        #plt.scatter(dataset, x='timestamp', y='rating')
+        #plt.plot.scatter(dataset, x='timestamp', y='rating')
         plt.show()
-        p=input("want to end?")
-        if(p == "y"):
+        #p=input("want to end?")
+        """if(p == "y"):
             break;
         #print(dataset.groupby('item').size())
-        #print(dataset.describe())
+        #print(dataset.describe()) """
     else:
         print("WHy is this here?")
 
