@@ -27,8 +27,8 @@ for file in os.listdir(directory):
     if filename.endswith(".csv"): 
         dataset = pandas.read_csv(folderName+ "/" + filename, names=names)
         print(filename)
-        #dataset.plot(kind='scatter', x='timestamp', y='rating')
-        dataset.plot(kind='Histogram', x='timestamp', y='rating')
+        dataset.plot(kind='scatter', x='timestamp', y='rating')
+        dataset.plot(kind='box', x='timestamp', y='rating')
         #scatter_matrix(dataset)
         #plt.scatter(dataset, x='timestamp', y='rating')
         #plt.plot.scatter(dataset, x='timestamp', y='rating')
