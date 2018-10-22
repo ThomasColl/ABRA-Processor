@@ -50,7 +50,7 @@ def getYear(timestamp):
     # Load dataset
 
 
-def makePlottable(d):
+def makePlottable(yearDicts, type):
     returnableYears = {
         1996: 0,
         1997: 0,
@@ -74,7 +74,7 @@ def makePlottable(d):
     }
     counter = 1996
     while (counter <= 2014):
-        returnableYears[counter] = d[str(counter)][3]
+        returnableYears[counter] = yearDicts[str(counter)][type]
         counter += 1
     return returnableYears
 
@@ -153,12 +153,13 @@ for file in os.listdir(directory):
     newYears = averageOutYears(years)
     print("\n\n\n\n\n\n\n\n\n\n\n")
     print(newYears)
-    plottableYears = makePlottable(newYears)
+    plottableYears = makePlottable(newYears, 3)
     plt.scatter(range(len(plottableYears)), list(plottableYears.values()))
-    print("error 2")
+    plt.show()
+    plottableYears = makePlottable(newYears, 2)
+    plt.scatter(range(len(plottableYears)), list(plottableYears.values()))
     plt.show()
     break;
-    plt.show()
     if count == 1:
         shortestTimestamp = int(dataset['timestamp'].min())
         longestTimestamp = int(dataset['timestamp'].max())
