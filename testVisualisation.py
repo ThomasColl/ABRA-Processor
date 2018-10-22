@@ -1,6 +1,7 @@
 # Load libraries
 import os
 
+import matplotlib.pyplot as plt
 import pandas.plotting
 
 
@@ -47,6 +48,35 @@ def getYear(timestamp):
         return "Huston " + str(timestamp)
 
     # Load dataset
+
+
+def makePlottable(d):
+    returnableYears = {
+        1996: 0,
+        1997: 0,
+        1998: 0,
+        1999: 0,
+        2000: 0,
+        2001: 0,
+        2002: 0,
+        2003: 0,
+        2004: 0,
+        2005: 0,
+        2006: 0,
+        2007: 0,
+        2008: 0,
+        2009: 0,
+        2010: 0,
+        2011: 0,
+        2012: 0,
+        2013: 0,
+        2014: 0,
+    }
+    counter = 1996
+    while (counter <= 2014):
+        returnableYears[counter] = d[str(counter)][3]
+        counter += 1
+    return returnableYears
 
 
 def averageOutYears(years):
@@ -123,9 +153,11 @@ for file in os.listdir(directory):
     newYears = averageOutYears(years)
     print("\n\n\n\n\n\n\n\n\n\n\n")
     print(newYears)
+    plottableYears = makePlottable(newYears)
+    plt.scatter(range(len(plottableYears)), list(plottableYears.values()))
+    print("error 2")
+    plt.show()
     break;
-    # dataset.plot(kind='scatter', x='timestamp', y='rating')
-    # dataset.plot(x='timestamp', y='rating')
     plt.show()
     if count == 1:
         shortestTimestamp = int(dataset['timestamp'].min())
