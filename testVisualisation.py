@@ -16,10 +16,6 @@ names = ['user', 'item', 'rating', 'timestamp']
 directory = os.fsencode(folderName)
 
 numberOfBrokenUpDataFiles = 90
-count = 1;
-meanAverage = 0
-shortestTimestamp = 0
-longestTimestamp = 0
 normalData = normalisedDatatype.normalisedDatatype()
 metadata = metaDatatype.metaDatatype(normalData, numberOfBrokenUpDataFiles)
 for file in os.listdir(directory):
@@ -34,9 +30,8 @@ for file in os.listdir(directory):
             else:
                 normalData.addYear(yearlyDatatype.yearlyDatatype(year))
         print(filename + " is complete")
-        print(str(numberOfBrokenUpDataFiles - count) + " files left to process")
         metadata.setTimestamps(dataset['timestamp'])
-        break;
+        metadata.calculateTotalAverage()
         if metadata.hasAllFilesBeenProcessed() is True:
             break;
     else:

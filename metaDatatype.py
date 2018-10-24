@@ -20,20 +20,32 @@ class metaDatatype:
         elif self.longestTimestamp < timestamp.max():
             self.longestTimestamp = timestamp.max()
 
-    #TODO: create average method
+    def calculateTotalAverage(self):
+        self.yearlyData.getAnnualAverages()
+        total = 0
+        count = 0
+        for key, value in self.yearlyData.dictOfYears.items():
+            total += value.average
+            count += 1
+        try:
+            self.totalAverage = total / count
+        except:
+            print("metadatatype.calculatetotalaverage error. Total = " + str(total) + " Count = " + str(count))
+            self.totalAverage = 0
 
     def indentCounter(self):
         self.fileCount += 1
 
     def numberOfFilesLeftToProcess(self):
-        print(self.numberOfFiles - self.fileCount)
+        print(str(self.numberOfFiles - self.fileCount) + " files left to process")
 
     def hasAllFilesBeenProcessed(self):
-        if self.fileCount == self.numberOfFiles:
+        if self.fileCount != self.numberOfFiles:
             self.numberOfFilesLeftToProcess()
             self.indentCounter()
             return False
-        return True
+        else:
+            return True
 
     def printDetails(self):
         print("Average = " + str(self.totalAverage))
