@@ -8,6 +8,10 @@ import os
 import matplotlib.pyplot as plt
 import pandas.plotting
 
+#TODO: Implement parrellisation
+#TODO: Refactor File Retrieval To Come From GitHub Rather Than Locally
+#TODO: Introduce bookDataType
+#TODO: Introduce flask UI
 
 folderName = 'BrokenUpData'
 url = "ratings_Books.csv"
