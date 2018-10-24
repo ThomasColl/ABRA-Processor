@@ -83,7 +83,6 @@ names = ['user', 'item', 'rating', 'timestamp']
 
 directory = os.fsencode(folderName)
 
-
 numberOfBrokenUpDataFiles = 90
 count = 1;
 meanAverage = 0
@@ -94,43 +93,36 @@ for file in os.listdir(directory):
     filename = os.fsdecode(file)
     if filename.endswith(".csv"):
         dataset = pandas.read_csv(folderName + "/" + filename, names=names)
-        print(filename)
-        print(dataset["rating"].mean())
+        print(filename + " has begun processing")
         for index, row in dataset.iterrows():
             year = datetime.datetime.fromtimestamp(int(row['timestamp'])).strftime('%Y')
 
             if normalData.isYearThere(int(year)) is True:
-                print("Date exists")
                 normalData.dictOfYears[int(year)].addReview(int(row["rating"]))
             else:
-                print("Date does not exist")
                 normalData.addYear(yearlyDatatype(year))
-        normalData.plotCount()
-        normalData.plotAverage()
-        normalData.plotTotal()
-    break;
+        print(filename + " is complete")
+        print(str(numberOfBrokenUpDataFiles - count) + " files left to process")
 
-    if count == 1:
-        shortestTimestamp = int(dataset['timestamp'].min())
-        longestTimestamp = int(dataset['timestamp'].max())
-    elif shortestTimestamp > int(dataset['timestamp'].min()) and int(dataset['timestamp'].min()) is not 0:
-        shortestTimestamp = int(dataset['timestamp'].min())
-    elif longestTimestamp < int(dataset['timestamp'].max()):
-        longestTimestamp = int(dataset['timestamp'].max())
-    if numberOfBrokenUpDataFiles >= count:
-        count = count + 1
-        meanAverage = meanAverage + dataset["rating"].mean()
+        if count == 1:
+            shortestTimestamp = int(dataset['timestamp'].min())
+            longestTimestamp = int(dataset['timestamp'].max())
+        elif shortestTimestamp > int(dataset['timestamp'].min()) and int(dataset['timestamp'].min()) is not 0:
+            shortestTimestamp = int(dataset['timestamp'].min())
+        elif longestTimestamp < int(dataset['timestamp'].max()):
+            longestTimestamp = int(dataset['timestamp'].max())
+        if numberOfBrokenUpDataFiles >= count:
+            count = count + 1
+            meanAverage = meanAverage + dataset["rating"].mean()
+        else:
+            break;
     else:
-        break;
-
-    # p = input("want to end?")
-    # if (p == "y"):
-    #     break;
-    # print(dataset.groupby('item').size())
-    # print(dataset.describe())
-else:
-    print("Why is this here?")
+        print("Why is this here?")
+print("The data has processed and the results are as following:")
+normalData.plotCount()
+normalData.plotAverage()
+normalData.plotTotal()
 meanAverage = meanAverage / numberOfBrokenUpDataFiles
-print(meanAverage)
-print(shortestTimestamp)
-print(longestTimestamp)
+print("Average = " + meanAverage)
+print("Shortest Timestamp = " + shortestTimestamp)
+print("Longest Timestamp = " + longestTimestamp)
