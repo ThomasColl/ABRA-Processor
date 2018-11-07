@@ -1,6 +1,9 @@
-class yearlyDatatype:
-    def __init__(self, year):
-        self.year = int(year)
+import YearlyDatatype
+
+
+class MonthlyDatatype:
+    def __init__(self, m):
+        self.month = int(m)
         self.totalScore = 0
         self.count = 0
         self.average = 0
@@ -13,8 +16,8 @@ class yearlyDatatype:
         try:
             self.average = self.totalScore / self.count
         except:
-            print("getAverage Failure total score " + self.totalScore + " and count " + self.count)
+            print("MonthlyDatatype.setAverage Failure total score " + str(self.totalScore) + " and count " + str(self.count))
 
     def returnDetails(self):
-        return tuple(self.year, self.totalScore, self.count, self.average)
+        return tuple(self.month, self.totalScore, self.count, self.average)
 

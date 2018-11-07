@@ -1,7 +1,7 @@
-import yearlyDatatype
+import YearlyDatatype
 import matplotlib.pyplot as plt
 
-class normalisedDatatype:
+class NormalisedDatatype:
     def __init__(self):
         self.dictOfYears = {}
 
@@ -17,9 +17,9 @@ class normalisedDatatype:
     def orderYears(self):
         return sorted(self.dictOfYears)
 
-    def getAnnualAverages(self):
+    def setAnnualData(self):
         for key, value in self.dictOfYears.items():
-            value.setAverage()
+            value.setData()
 
     def getPlottableDict(self):
 
@@ -43,7 +43,6 @@ class normalisedDatatype:
         plt.show()
 
     def plotAverage(self):
-        self.getAnnualAverages()
         plottableDict = {}
         for key, value in self.dictOfYears.items():
             plottableDict[key] = value.average

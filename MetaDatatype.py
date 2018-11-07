@@ -1,6 +1,6 @@
 import pandas
 
-class metaDatatype:
+class MetaDatatype:
     def __init__(self, normalisedData, numFiles):
         self.yearlyData = normalisedData
         self.numberOfFiles = numFiles
@@ -21,7 +21,6 @@ class metaDatatype:
             self.longestTimestamp = timestamp.max()
 
     def calculateTotalAverage(self):
-        self.yearlyData.getAnnualAverages()
         total = 0
         count = 0
         for key, value in self.yearlyData.dictOfYears.items():
