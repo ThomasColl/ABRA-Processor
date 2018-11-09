@@ -1,6 +1,7 @@
 import YearlyDatatype
 import matplotlib.pyplot as plt
 
+
 class NormalisedDatatype:
     def __init__(self):
         self.dictOfYears = {}

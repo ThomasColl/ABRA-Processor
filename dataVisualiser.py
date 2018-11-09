@@ -48,7 +48,6 @@ for file in os.listdir(directory):
                 normalData.addYear(YearlyDatatype.YearlyDatatype(year))
         print(filename + " is complete")
         metadata.setTimestamps(dataset['timestamp'])
-        break;
         if metadata.hasAllFilesBeenProcessed() is True:
             break;
     else:

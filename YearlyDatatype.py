@@ -30,5 +30,5 @@ class YearlyDatatype:
             print("error for setData for year " + self.year + " total = " + self.totalScore + " count = " + self.count)
 
     def returnDetails(self):
-        return (self.year, self.months, self.totalScore, self.count, self.average)
+        return self.year, self.months, self.totalScore, self.count, self.average
 
