@@ -12,22 +12,23 @@ class YearlyDatatype:
     def createMonthlyList(self):
         months = []
         for month in range(12):
-            months.append(MonthlyDatatype.MonthlyDatatype(month))
+            months.append(MonthlyDatatype.MonthlyDatatype(self.year, int(month + 1)))
         return months
 
-    def addReview(self, review, month):
-        self.months[month-1].addReview(review)
+    def addReview(self, review, month, day):
+        self.months[month-1].addReview(review, day)
 
     def setData(self):
         for month in self.months:
+            month.setData()
             self.totalScore += month.totalScore
             self.count += month.count
-            month.setAverage()
             self.average += month.average
         try:
             self.average = self.average / 12
         except:
-            print("error for setData for year " + self.year + " total = " + self.totalScore + " count = " + self.count)
+            print("error YearlyDatatype.setData for year " + self.year + " total = " + self.totalScore + " count = " +
+                  self.count)
 
     def returnDetails(self):
         return self.year, self.months, self.totalScore, self.count, self.average

@@ -25,27 +25,31 @@ class NormalisedDatatype:
     def getPlottableDict(self):
 
         plottableDict = {}
-        for key, value in self.dictOfYears.items():
-            plottableDict[key] = value.count
+        for year, month in self.dictOfYears.items():
+            for mon, day in month:
+                plottableDict[mon] = day.count
         return plottableDict
 
     def plotCount(self):
         plottableDict = {}
-        for key, value in self.dictOfYears.items():
-            plottableDict[key] = value.count
+        for year, month in self.dictOfYears.items():
+            for mon, day in month:
+                plottableDict[mon] = day.count
         plt.scatter(range(len(plottableDict)), sorted(plottableDict.values()))
         plt.show()
 
     def plotTotal(self):
         plottableDict = {}
-        for key, value in self.dictOfYears.items():
-            plottableDict[key] = value.totalScore
+        for year, month in self.dictOfYears.items():
+            for mon, day in month:
+                plottableDict[mon] = day.totalScore
         plt.scatter(range(len(plottableDict)), sorted(plottableDict.values()))
         plt.show()
 
     def plotAverage(self):
         plottableDict = {}
-        for key, value in self.dictOfYears.items():
-            plottableDict[key] = value.average
+        for year, month in self.dictOfYears.items():
+            for mon, day in month:
+                plottableDict[mon] = day.average
         plt.scatter(range(len(plottableDict)), sorted(plottableDict.values()))
         plt.show()
