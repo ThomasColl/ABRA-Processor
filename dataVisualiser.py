@@ -42,21 +42,16 @@ for file in os.listdir(directory):
         print(filename + " is complete")
         metadata.setTimestamps(dataset['timestamp'])
         if metadata.hasAllFilesBeenProcessed() is True:
-            break;
+            break
     else:
         print("Why is this here?")
 print("The data has processed and the results are as following:")
 
 normalData.setAnnualData()
 plotter = Plotter.Plotter(normalData)
-# plotter.plotYearlyCount()
-# plotter.plotMonthlyCount()
-# plotter.plotYearlyAverage()
-# plotter.plotMonthlyAverage()
-# plotter.plotYearlyTotal()
-# plotter.plotMonthlyTotal()
 plotter.plotDailyCount()
 plotter.plotDailyAverage()
 plotter.plotDailyTotal()
 metadata.calculateTotalAverage()
 metadata.printDetails()
+
