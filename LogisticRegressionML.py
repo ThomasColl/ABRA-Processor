@@ -13,6 +13,8 @@ import NormalisedDatatype
 import YearlyDatatype
 import Plotter
 import os
+import numpy as np
+
 
 import pandas.plotting
 
@@ -39,19 +41,21 @@ for file in os.listdir(directory):
                 normalData.dictOfYears[int(year)].addReview(int(row["rating"]), int(month), int(day))
             else:
                 normalData.addYear(YearlyDatatype.YearlyDatatype(year))
-        break
         print(filename + " is complete")
         metadata.setTimestamps(dataset['timestamp'])
     else:
         print("Why is this here?")
+    break
 print("The data has processed and the results are as following:")
 
-# Do Machine Learning aspect now!
 normalData.setAnnualData()
-plotter = Plotter.Plotter(normalData)
-plotter.plotDailyCount()
-plotter.plotDailyAverage()
-plotter.plotDailyTotal()
-metadata.calculateTotalAverage()
-metadata.printDetails()
 
+# Do Machine Learning aspect now!
+plottableDict = {}
+for key, value in normalData.dictOfYears.items():
+    for month in normalData.dictOfYears[key].months:
+        for day in month.days:
+            plottableDictStr = int(str(key) + str(month.month) + str(day.day))
+            plottableDict[plottableDictStr] = day.count
+X = np.asarray(range(len(plottableDict))).reshape(-1, 1)
+Y = np.asarray(sorted(plottableDict.values())).reshape(-1, 1).ravel()
