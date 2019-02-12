@@ -1,6 +1,3 @@
-import pandas
-
-
 class MetaDatatype:
     def __init__(self, normalisedData, numFiles):
         self.yearlyData = normalisedData

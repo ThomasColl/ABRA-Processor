@@ -4,17 +4,9 @@ import MetaDatatype
 import NormalisedDatatype
 import YearlyDatatype
 import Plotter
-import pandas as pd
-import io
-import requests
 import os
 
-import matplotlib.pyplot as plt
 import pandas.plotting
-
-#TODO: Implement parrellisation
-#TODO: Introduce develop datatype
-#TODO: Introduce flask UI
 
 numberOfBrokenUpDataFiles = 90
 brokenUpDataFilesCount = 0
@@ -39,10 +31,9 @@ for file in os.listdir(directory):
                 normalData.dictOfYears[int(year)].addReview(int(row["rating"]), int(month), int(day))
             else:
                 normalData.addYear(YearlyDatatype.YearlyDatatype(year))
+        # break
         print(filename + " is complete")
         metadata.setTimestamps(dataset['timestamp'])
-        if metadata.hasAllFilesBeenProcessed() is True:
-            break
     else:
         print("Why is this here?")
 print("The data has processed and the results are as following:")

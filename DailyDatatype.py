@@ -1,6 +1,3 @@
-import MonthlyDatatype
-
-
 class DailyDatatype:
     def __init__(self, day):
         self.day = int(day)

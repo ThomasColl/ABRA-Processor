@@ -1,4 +1,3 @@
-import YearlyDatatype
 import matplotlib.pyplot as plt
 
 
@@ -15,41 +14,7 @@ class NormalisedDatatype:
         else:
             return False
 
-    def orderYears(self):
-        return sorted(self.dictOfYears)
-
     def setAnnualData(self):
         for key, value in self.dictOfYears.items():
             value.setData()
 
-    def getPlottableDict(self):
-
-        plottableDict = {}
-        for year, month in self.dictOfYears.items():
-            for mon, day in month:
-                plottableDict[mon] = day.count
-        return plottableDict
-
-    def plotCount(self):
-        plottableDict = {}
-        for year, month in self.dictOfYears.items():
-            for mon, day in month:
-                plottableDict[mon] = day.count
-        plt.scatter(range(len(plottableDict)), sorted(plottableDict.values()))
-        plt.show()
-
-    def plotTotal(self):
-        plottableDict = {}
-        for year, month in self.dictOfYears.items():
-            for mon, day in month:
-                plottableDict[mon] = day.totalScore
-        plt.scatter(range(len(plottableDict)), sorted(plottableDict.values()))
-        plt.show()
-
-    def plotAverage(self):
-        plottableDict = {}
-        for year, month in self.dictOfYears.items():
-            for mon, day in month:
-                plottableDict[mon] = day.average
-        plt.scatter(range(len(plottableDict)), sorted(plottableDict.values()))
-        plt.show()
