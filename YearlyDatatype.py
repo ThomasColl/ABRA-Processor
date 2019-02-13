@@ -5,6 +5,7 @@ class YearlyDatatype:
     def __init__(self, year):
         self.year = int(year)
         self.months = self.createMonthlyList()
+        self.numberOfMonths = 12
         self.totalScore = 0
         self.count = 0
         self.average = 0
@@ -23,12 +24,16 @@ class YearlyDatatype:
             month.setData()
             self.totalScore += month.totalScore
             self.count += month.count
-            self.average += month.average
+            if month.average is 0:
+                del month
+            else:
+                self.average += month.average
+                self.numberOfMonths = self.numberOfMonths -1
         try:
-            self.average = self.average / 12
+            self.average = self.average / self.numberOfMonths
         except:
-            print("error YearlyDatatype.setData for year " + self.year + " total = " + self.totalScore + " count = " +
-                  self.count)
+            print("error YearlyDatatype.setData for year " + str(self.year) + " total = " + str(self.totalScore) +
+                  " count = " + str(self.count))
 
     def returnDetails(self):
         return self.year, self.months, self.totalScore, self.count, self.average

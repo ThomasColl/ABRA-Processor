@@ -8,6 +8,7 @@ class MetaDatatype:
         self.totalScore = 0
         self.longestTimestamp = 0
         self.shortestTimestamp = 0
+        self.numberOfAbnormals = 0
 
     def setTimestamps(self, timestamp):
         if self.longestTimestamp == 0 and self.shortestTimestamp == 0:
@@ -17,6 +18,9 @@ class MetaDatatype:
             self.shortestTimestamp = timestamp.min()
         elif self.longestTimestamp < timestamp.max():
             self.longestTimestamp = timestamp.max()
+
+    def setAbnormals(self, numberOfAbnormals):
+        self.numberOfAbnormals = numberOfAbnormals
 
     def calculateTotalAverage(self):
         total = 0

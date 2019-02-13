@@ -1,3 +1,4 @@
+#NOTE: This is now a depreciated library. Main visualisation come from LogisticRegressionML.py
 # Load libraries
 import datetime
 import MetaDatatype
