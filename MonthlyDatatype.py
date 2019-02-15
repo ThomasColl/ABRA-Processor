@@ -21,16 +21,11 @@ class MonthlyDatatype:
         self.days[day-1].addReview(review)
 
     def setData(self):
-        daysToGo = []
         for day in self.days:
+            day.setAverage()
             self.totalScore += day.totalScore
             self.count += day.count
-            result = day.setAverage()
-            if result is 0:
-                del day
-                self.numberOfDays = self.numberOfDays -1
-            else:
-                self.average += day.average
+            self.average += day.average
         try:
             self.average = self.average / self.numberOfDays
             return self.average

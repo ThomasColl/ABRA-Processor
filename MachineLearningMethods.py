@@ -22,6 +22,7 @@ def createNewKeys(yearToEnd, endDate):
 
 
 def createPlottableLists(normalisedData):
+    normalCount = 0
     abnormalCount = 0
     xList = []
     yListCount = []
@@ -30,13 +31,16 @@ def createPlottableLists(normalisedData):
     for year, years in sorted(normalisedData.dictOfYears.items()):
         for month in years.months:
             for day in month.days:
-                xList.append(int(str(year) + str(month.month) + str(day.day)))
-                yListCount.append(day.count)
-                yListTotal.append(day.totalScore)
                 if day.average < 1:
-                    abnormalCount = abnormalCount +1
-                yListAverage.append(day.average)
-    return xList, yListCount, yListTotal, yListAverage, abnormalCount
+                    abnormalCount += 1
+                else:
+                    normalCount += 1
+                    xList.append(int(str(year) + str(month.month) + str(day.day)))
+                    yListCount.append(day.count)
+                    yListTotal.append(day.totalScore)
+                    yListAverage.append(day.average)
+
+    return xList, yListCount, yListTotal, yListAverage, abnormalCount, normalCount
 
 
 def addListsTogether(realData, predictiveData):

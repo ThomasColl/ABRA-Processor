@@ -12,11 +12,9 @@ class DailyDatatype:
     def setAverage(self):
         try:
             self.average = self.totalScore / self.count
-            return self.average
         except:
             print("DailyDatatype.setAverage Failure total score " + str(self.totalScore) + " and count " +
                   str(self.count) + " removing from data")
-            return 0
 
     def returnDetails(self):
         return tuple(self.day, self.totalScore, self.count, self.average)

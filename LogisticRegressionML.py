@@ -52,6 +52,7 @@ for file in os.listdir(directory):
                 normalData.dictOfYears[int(year)].addReview(int(row["rating"]), int(month), int(day))
             else:
                 normalData.addYear(YearlyDatatype.YearlyDatatype(year))
+        break
         print(filename + " is complete")
         metadata.setTimestamps(dataset['timestamp'])
     else:
@@ -67,6 +68,7 @@ print("Machine Learning Aspect Begun")
 lists = MachineLearningMethods.createPlottableLists(normalData)
 xList = lists[0]
 metadata.setAbnormals(lists[4])
+metadata.setNormals(lists[5])
 linearModel = linear_model.LinearRegression()
 
 print("New Key creation begun")
@@ -98,3 +100,4 @@ plotter.plotTheDictionary(2)
 plotter.plotTheDictionary(3)
 
 print("There was " + str(metadata.numberOfAbnormals) + ' abnormal results found')
+print("There was " + str(metadata.numberOfNormals) + ' normal results found')

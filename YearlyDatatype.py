@@ -24,11 +24,7 @@ class YearlyDatatype:
             month.setData()
             self.totalScore += month.totalScore
             self.count += month.count
-            if month.average is 0:
-                del month
-            else:
-                self.average += month.average
-                self.numberOfMonths = self.numberOfMonths -1
+            self.average += month.average
         try:
             self.average = self.average / self.numberOfMonths
         except:
