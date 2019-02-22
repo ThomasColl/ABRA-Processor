@@ -24,12 +24,16 @@ import numpy as np
 import pandas.plotting
 import matplotlib.pyplot as plt
 from sklearn import linear_model
+from sklearn.linear_model import LogisticRegression
+from sklearn import utils
+from sklearn import preprocessing
+from sklearn.datasets import load_iris
 
 # ---------------------------------- Constants Declaration Section --------------------------------------------
 
 numberOfBrokenUpDataFiles = 90
 brokenUpDataFilesCount = 0
-folderName = 'TestData'
+folderName = 'BrokenUpData'
 names = ['user', 'item', 'rating', 'timestamp']
 
 directory = os.fsencode(folderName)
@@ -52,7 +56,6 @@ for file in os.listdir(directory):
                 normalData.dictOfYears[int(year)].addReview(int(row["rating"]), int(month), int(day))
             else:
                 normalData.addYear(YearlyDatatype.YearlyDatatype(year))
-        break
         print(filename + " is complete")
         metadata.setTimestamps(dataset['timestamp'])
     else:
@@ -70,6 +73,7 @@ xList = lists[0]
 metadata.setAbnormals(lists[4])
 metadata.setNormals(lists[5])
 linearModel = linear_model.LinearRegression()
+logisticModel = LogisticRegression()
 
 print("New Key creation begun")
 newDates = MachineLearningMethods.createNewKeys(2020, (2014, 7, 23))
@@ -90,6 +94,39 @@ finalTotal = finals[1]
 finalAverage = finals[2]
 
 listsToSendToPlotter = finalDates, finalCount, finalTotal, finalAverage
+
+# print("New Key creation begun")
+# newDates = MachineLearningMethods.createNewKeys(2020, (2014, 7, 23))
+# print("New Keys creation complete")
+# finals = []
+# print("Data predicting begun")
+# for yList in (lists[1], lists[2], lists[3]):
+#     X = np.asarray(xList).reshape(-1, 1)
+#     Y = np.asarray(yList).reshape(-1, 1).ravel()
+#     label_enc = preprocessing.LabelEncoder()
+#     encoded = label_enc.fit_transform(X, Y)
+#     logisticModel.fit(X, Y)
+    
+#     newValues = logisticModel.predict(np.asarray(newDates).reshape(-1, 1)).tolist()
+#     finals.append(MachineLearningMethods.addListsTogether(yList, newValues))
+# print("Data predicting complete")
+# finalDates = MachineLearningMethods.addListsTogether(xList, newDates)
+# finalCount = finals[0]
+# finalTotal = finals[1]
+# finalAverage = finals[2]
+
+# listsToSendToPlotter = finalDates, finalCount, finalTotal, finalAverage
+
+# iris = load_iris()
+
+# for yList in (lists[1], lists[2], lists[3]):
+#     X = iris.data
+#     y = iris.target
+
+# knn = KNeighborsClassifier(n_neighbors=5)
+# knn.fit(X, y)
+# y_pred = knn.predict(X)
+# print(metrics.accuracy_score(y, y_pred))
 
 # ------------------------------------ Plotting Section -------------------------------------------
 
